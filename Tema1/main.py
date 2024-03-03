@@ -31,16 +31,18 @@ def exercitiu_2():
     z = u / 10
     asociativa = True
 
-    if ((x + y) + z != x + (y + z)):
+    if (x + y) + z != x + (y + z):
         asociativa = False
 
     print(f"asociativa: {asociativa}")
 
-def error (exact, calculated):
+
+def error(exact, calculated):
     return abs(calculated - exact)
 
 
 exercitiu_2()
+
 
 def add_in_freq(key, freq_list):
     if key in freq_list:
@@ -63,20 +65,20 @@ def exercitiu_3():
         min_error_sin, min_index_sin = 1000, 4
         min_error_cos, min_index_cos = 1000, 4
 
-        for i in range(4,10):
+        for i in range(4, 10):
             actual_error_tan = error(T(i, number), tan)
             actual_error_sin = error(S(i, number), sin)
             actual_error_cos = error(C(i, number), cos)
 
-            if (actual_error_tan < min_error_tan):
+            if actual_error_tan < min_error_tan:
                 min_error_tan = actual_error_tan
                 min_index_tan = i
 
-            if (actual_error_sin < min_error_sin):
+            if actual_error_sin < min_error_sin:
                 min_error_sin = actual_error_sin
                 min_index_sin = i
 
-            if (actual_error_cos < min_error_cos):
+            if actual_error_cos < min_error_cos:
                 min_error_cos = actual_error_cos
                 min_index_cos = i
 
@@ -90,23 +92,31 @@ def exercitiu_3():
 
     return freq_tan, freq_sin, freq_cos
 
-frequency_tan, frequency_sin, frequency_cos = exercitiu_3()
 
+def create_combined_plot(freq_lists, function_names):
+    plt.figure(figsize=(10, 6))
 
-def create_plot(freq_list, fct_name):
-    plt.bar(list(freq_list.keys()), list(freq_list.values()))
+    colors = ['b', 'g', 'r']  # Colors for different functions
+
+    for i, freq_list in enumerate(freq_lists):
+        plt.bar([x + i * 0.25 for x in freq_list.keys()], list(freq_list.values()), width=0.25, color=colors[i],
+                label=function_names[i])
 
     plt.xlabel('T function index')
     plt.ylabel('Min error count')
-    plt.title(f"Frequency of {fct_name} approximation")
+    plt.title("Frequency of Trigonometric Function Approximations")
 
-    for key, value in freq_list.items():
-        plt.text(key, value, str(value), ha='center', va='bottom')
+    plt.text(0.5, 1.08, f"Generated numbers = {number_count}", transform=plt.gca().transAxes, ha='center')
 
-    plt.text(0.5, 1.1, f"Generated numbers = {number_count}", transform=plt.gca().transAxes, ha='center')
+    for i, freq_list in enumerate(freq_lists):
+        for key, value in freq_list.items():
+            plt.text(key + i * 0.25, value, str(value), ha='center', va='bottom')
 
+    plt.legend()
     plt.show()
 
-create_plot(frequency_tan, "tan")
-create_plot(frequency_sin, "sin")
-create_plot(frequency_cos, "cos")
+
+frequency_tan, frequency_sin, frequency_cos = exercitiu_3()
+fct_names = ["tan", "sin", "cos"]
+
+create_combined_plot([frequency_tan, frequency_sin, frequency_cos], fct_names)
