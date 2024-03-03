@@ -1,8 +1,12 @@
-import sys
-import numpy as np
-from number_generator import generate_all
-from functions import T
 import math
+import sys
+
+import numpy as np
+
+from functions import T
+from number_generator import generate_all, number_count
+
+import matplotlib.pyplot as plt
 
 
 def exercitiu_1():
@@ -55,11 +59,22 @@ def exercitiu_3():
         else:
             freq[min_index] = 1
     print(freq)
-        
-exercitiu_3()
+    return freq
 
+frequency = exercitiu_3()
 
-    
+plt.bar(list(frequency.keys()), list(frequency.values()))
 
+# Add labels and title
+plt.xlabel('T function index')
+plt.ylabel('Min error count')
+plt.title('Frequency of tan approximation')
 
-    
+# Adding values on top of bars
+for key, value in frequency.items():
+    plt.text(key, value, str(value), ha='center', va='bottom')
+
+plt.text(0.5, 1.1, f"Generated numbers = {number_count}", transform=plt.gca().transAxes, ha='center')
+
+# Show plot
+plt.show()
