@@ -1,5 +1,7 @@
 import sys
 import numpy as np
+from number_generator import generate_all
+
 
 def exercitiu_1():
     mantissa = sys.float_info.mant_dig
@@ -13,17 +15,24 @@ def exercitiu_1():
 
     return u
 
+
 u = exercitiu_1()
 
+
 def exercitiu_2():
-    x=1.0
-    y=u/10
-    z=u/10
+    x = 1.0
+    y = u / 10
+    z = u / 10
     asociativa = True
 
-    if((x+y)+z != x+(y+z)):
+    if ((x + y) + z != x + (y + z)):
         asociativa = False
 
     print(f"asociativa: {asociativa}")
 
+
 exercitiu_2()
+
+
+def exercitiu_3():
+    random_numbers = generate_all()
