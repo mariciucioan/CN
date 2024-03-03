@@ -3,7 +3,7 @@ import sys
 
 import numpy as np
 
-from functions import T
+from functions import T, S, C
 from number_generator import generate_all, number_count
 
 import matplotlib.pyplot as plt
@@ -42,39 +42,71 @@ def error (exact, calculated):
 
 exercitiu_2()
 
+def add_in_freq(key, freq_list):
+    if key in freq_list:
+        freq_list[key] += 1
+    else:
+        freq_list[key] = 1
+
 
 def exercitiu_3():
     random_numbers = generate_all()
-    freq = {}
+    freq_tan = {}
+    freq_sin = {}
+    freq_cos = {}
     for number in random_numbers:
         tan = math.tan(number)
-        min_error, min_index = 1000, 4
+        sin = math.sin(number)
+        cos = math.cos(number)
+
+        min_error_tan, min_index_tan = 1000, 4
+        min_error_sin, min_index_sin = 1000, 4
+        min_error_cos, min_index_cos = 1000, 4
+
         for i in range(4,10):
-            actual_error = error(T(i, number), tan)
-            if ( actual_error < min_error):
-                min_error = actual_error
-                min_index = i
-        if min_index in freq:
-            freq[min_index] += 1
-        else:
-            freq[min_index] = 1
-    print(freq)
-    return freq
+            actual_error_tan = error(T(i, number), tan)
+            actual_error_sin = error(S(i, number), sin)
+            actual_error_cos = error(C(i, number), cos)
 
-frequency = exercitiu_3()
+            if (actual_error_tan < min_error_tan):
+                min_error_tan = actual_error_tan
+                min_index_tan = i
 
-plt.bar(list(frequency.keys()), list(frequency.values()))
+            if (actual_error_sin < min_error_sin):
+                min_error_sin = actual_error_sin
+                min_index_sin = i
 
-# Add labels and title
-plt.xlabel('T function index')
-plt.ylabel('Min error count')
-plt.title('Frequency of tan approximation')
+            if (actual_error_cos < min_error_cos):
+                min_error_cos = actual_error_cos
+                min_index_cos = i
 
-# Adding values on top of bars
-for key, value in frequency.items():
-    plt.text(key, value, str(value), ha='center', va='bottom')
+        add_in_freq(min_index_tan, freq_tan)
+        add_in_freq(min_index_sin, freq_sin)
+        add_in_freq(min_index_cos, freq_cos)
 
-plt.text(0.5, 1.1, f"Generated numbers = {number_count}", transform=plt.gca().transAxes, ha='center')
+    print(freq_tan)
+    print(freq_sin)
+    print(freq_cos)
 
-# Show plot
-plt.show()
+    return freq_tan, freq_sin, freq_cos
+
+frequency_tan, frequency_sin, frequency_cos = exercitiu_3()
+
+
+def create_plot(freq_list, fct_name):
+    plt.bar(list(freq_list.keys()), list(freq_list.values()))
+
+    plt.xlabel('T function index')
+    plt.ylabel('Min error count')
+    plt.title(f"Frequency of {fct_name} approximation")
+
+    for key, value in freq_list.items():
+        plt.text(key, value, str(value), ha='center', va='bottom')
+
+    plt.text(0.5, 1.1, f"Generated numbers = {number_count}", transform=plt.gca().transAxes, ha='center')
+
+    plt.show()
+
+create_plot(frequency_tan, "tan")
+create_plot(frequency_sin, "sin")
+create_plot(frequency_cos, "cos")
