@@ -1,6 +1,8 @@
 import sys
 import numpy as np
 from number_generator import generate_all
+from functions import T
+import math
 
 
 def exercitiu_1():
@@ -30,9 +32,34 @@ def exercitiu_2():
 
     print(f"asociativa: {asociativa}")
 
+def error (exact, calculated):
+    return abs(calculated - exact)
+
 
 exercitiu_2()
 
 
 def exercitiu_3():
     random_numbers = generate_all()
+    freq = {}
+    for number in random_numbers:
+        tan = math.tan(number)
+        min_error, min_index = 1000, 4
+        for i in range(4,10):
+            actual_error = error(T(i, number), tan)
+            if ( actual_error < min_error):
+                min_error = actual_error
+                min_index = i
+        if min_index in freq:
+            freq[min_index] += 1
+        else:
+            freq[min_index] = 1
+    print(freq)
+        
+exercitiu_3()
+
+
+    
+
+
+    

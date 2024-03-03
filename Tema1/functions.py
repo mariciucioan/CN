@@ -16,3 +16,17 @@ def T8(a):
 
 def T9(a):
     return (34459425 * a - 4729725 * a**3 + 135135 * a**5 - 990 * a ** 7 + a**9) / (34459425 - 16216200 * a**2 + 945945 * a**4 - 13860 * a**6 + 45 * a**8)
+
+def T(i, a):
+    if i == 4:
+        return T4(a)
+    elif i==5:
+        return T5(a)
+    elif i==6:
+        return T6(a)
+    elif i==7:
+        return T7(a)
+    elif i==8:
+        return T8(a)
+    elif i==9:
+        return T9(a)
