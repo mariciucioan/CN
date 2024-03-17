@@ -2,3 +2,4 @@
 .idea
 Tema1/__pycache__
 */__pycache
+*.pyc
