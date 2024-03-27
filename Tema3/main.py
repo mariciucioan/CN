@@ -1,6 +1,7 @@
 import sys
 import numpy as np
 
+
 def data_init(exercitiu6=False, n=3):
     if exercitiu6:
         A = np.random.rand(n, n)
@@ -13,6 +14,7 @@ def data_init(exercitiu6=False, n=3):
         s = [3, 2, 1]
 
     return A, s
+
 
 epsilon = sys.float_info.epsilon
 A, s = data_init(exercitiu6=True, n=50)
@@ -104,12 +106,10 @@ def householder_qr(A):
         u[r] = R[r, r] - k
         u[r + 1:] = R[r + 1:, r]
 
-        # Update R
         for j in range(r, n):
             gamma = np.sum(u[r:] * R[r:, j]) / beta
             R[r:, j] -= gamma * u[r:]
 
-        # Update Q
         for j in range(n):
             gamma = np.sum(u * Q[:, j]) / beta
             Q[:, j] -= gamma * u
