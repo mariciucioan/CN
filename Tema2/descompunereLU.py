@@ -65,16 +65,16 @@ def lu_decomposition_same_matrix(A):
 
     return B
 
-# A = np.array([[2, 0, 2],
-#               [1, 2, 5],
-#               [1, 1, 7]])
+A = np.array([[2, 0, 2],
+              [1, 2, 5],
+              [1, 1, 7]])
 
-# L, U = lu_decomposition_aux(A)
-# print("Matricea L:")
-# print(L)
-# print("Matricea U:")
-# print(U)
+L, U = lu_decomposition_aux(A)
+print("Matricea L:")
+print(L)
+print("Matricea U:")
+print(U)
 
-# B = lu_decomposition_same_matrix(A)
-# print("Matricea LU:")
-# print(B)
+B = lu_decomposition_same_matrix(A)
+print("Matricea LU:")
+print(B)
