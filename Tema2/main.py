@@ -21,7 +21,7 @@ def calculate_norm(A, b, x):
 
 def generate_matrix(n):
     while True:
-        matrix = np.random.randint(0, 100, size=(n, n))
+        matrix = np.random.uniform(1,100,size=(n, n)).astype(float)
         #activam daca dorim o zeciamala pt a diversifica testele
         # matrix = matrix / 10.0
         # matrix = np.random.rand(n, n)
@@ -29,13 +29,15 @@ def generate_matrix(n):
         if det != 0:
             return matrix
 
-Ainit = generate_matrix(100)
-b = np.random.rand(100)
+Ainit = generate_matrix(10)
+b = np.random.rand(10)
 
 #matrice de test: 
 # Ainit = np.array([[2, 0, 2],
 #               [1, 2, 5],
 #               [1, 1, 7]])
+
+# b = [4,10,10]
 
 
 print("Matricea initiala:")
