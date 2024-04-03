@@ -2,8 +2,8 @@ import sys
 import numpy as np
 
 
-def data_init(exercitiu6=False, n=3):
-    if exercitiu6:
+def data_init(ex6=False, n=3):
+    if ex6:
         A = np.random.rand(n, n)
         s = np.random.rand(n)
         return A, s
@@ -16,11 +16,12 @@ def data_init(exercitiu6=False, n=3):
     return A, s
 
 
+n=100
 epsilon = sys.float_info.epsilon
-A, s = data_init(exercitiu6=True, n=50)
+A, s = data_init(ex6=True, n=n)
 
 
-def exercitiu1(A, s, log=True):
+def ex1(A, s, log=True):
     n = len(s)
     b = np.zeros(n)
     for j in range(n):
@@ -34,7 +35,7 @@ def exercitiu1(A, s, log=True):
     return b
 
 
-def exercitiu2(A, log=True):
+def ex2(A, log=True):
     Q, R = householder_qr(A)
 
     if log:
@@ -50,16 +51,16 @@ def exercitiu2(A, log=True):
     return Q, R
 
 
-def exercitiu3_prim(A_param, b_param, householder):
+def ex3_first(A_param, b_param, householder):
     if householder:
-        Q_local, R_local = exercitiu2(A_param, log=False)
+        Q_local, R_local = ex2(A_param, log=False)
     else:
         Q_local, R_local = np.linalg.qr(A_param)
 
     return solve_linear_system(Q_local, R_local, b_param)
 
 
-def exercitiu3():
+def ex3():
     print("Exercitiu 3:\n")
     print("numpy QR:")
     print(x_QR)
@@ -69,7 +70,7 @@ def exercitiu3():
     print("\n----------------")
 
 
-def exercitiu4():
+def ex4():
     print("Exercitiu 4:\n")
 
     calculate_and_print_norm(A @ x_householder - b, "A*x_householder - b")
@@ -80,7 +81,7 @@ def exercitiu4():
     print("\n----------------")
 
 
-def exercitiu5():
+def ex5():
     print("Exercitiu 5:\n")
     A_inv_householder = calculate_matrix_inverse(Q, R)
     A_inv_numpy = np.linalg.inv(A)
@@ -143,10 +144,10 @@ def calculate_matrix_inverse(Q, R):
     return A_inv
 
 
-b = exercitiu1(A, s)
-Q, R = exercitiu2(A)
-x_QR = exercitiu3_prim(A, b, householder=False)
-x_householder = exercitiu3_prim(A, b, householder=True)
-exercitiu3()
-exercitiu4()
-exercitiu5()
+b = ex1(A, s)
+Q, R = ex2(A)
+x_QR = ex3_first(A, b, householder=False)
+x_householder = ex3_first(A, b, householder=True)
+ex3()
+ex4()
+ex5()
