@@ -1,5 +1,7 @@
 from citire_matrice_rara import *
 
+epsilon_error = 1e-6
+
 def suma_matricelor_rare(matrice1, matrice2):
     suma = []
     for i, linie in enumerate(matrice1):
@@ -16,7 +18,7 @@ def suma_matricelor_rare(matrice1, matrice2):
                     break
 
             valoare_suma = valoare1 + valoare2
-            if valoare_suma != 0.0:
+            if abs(valoare_suma) < epsilon_error:
                 linie_suma.append((valoare_suma, coloana1))
             coloane_adaugate.add(coloana1)
 
@@ -36,11 +38,10 @@ _, matrice_aplusb = citeste_matrice_rara("C:/An3Fac/sem2/numeric calculus/CN/Tem
 suma = suma_matricelor_rare(matrice_a, matrice_b)
 
 
-epsilon_error = 1e-6
 def verifica_egalitate(suma, matrice_aplusb, epsilon_error):
     for i in range(len(suma)):
         for j in range(len(suma[i])):
-            if suma[i][j][0] != 0.0  and matrice_aplusb[i][j][1] == suma[i][j][1] and abs(suma[i][j][0] - matrice_aplusb[i][j][0]) >= epsilon_error:
+            if matrice_aplusb[i][j][1] == suma[i][j][1] and abs(suma[i][j][0] - matrice_aplusb[i][j][0]) >= epsilon_error:
                 print(f"linia {i} coloana {j} diff: val suma -> {suma[i][j][0]} diferit de aplusb -> {matrice_aplusb[i][j][0]}")
                 return False
     return True

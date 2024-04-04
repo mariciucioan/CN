@@ -21,49 +21,49 @@ for i in range(1, 6):
     #Solutie folosind un singur vector
     print("Varianta cu un singur vector:")
     sol_un_vector, it_unv= gauss_seidel_un_vector(matrice, vector)
-    print(f"Gasita in {it_unv} iteratii")
+    print(f"Solutie Gasita in {it_unv} iteratii")
     print("Norma:")
     norma_unvector = norma = calculeaza_norma(matrice, sol_un_vector, vector)
     print(norma_unvector)
 
 
 #Test singular 
-dimensiune, matrice = citeste_matrice_rara("C:/An3Fac/sem2/numeric calculus/CN/Tema4/4/a_1.txt")
-# print(matrice[0])
-verifica_diagonala_principala_nenula(matrice)
-# verifica_diagonala_secundara_nenula(matrice)
+# dimensiune, matrice = citeste_matrice_rara("C:/An3Fac/sem2/numeric calculus/CN/Tema4/4/a_1.txt")
+# # print(matrice[0])
+# verifica_diagonala_principala_nenula(matrice)
+# # verifica_diagonala_secundara_nenula(matrice)
 
-# dim2, mat2 = citeste_matrice_rara_varianta2("C:/An3Fac/sem2/numeric calculus/CN/Tema4/4/a_1.txt")
-# verifica_diagonala_principala_nenula_varianta2(mat2)
-# verifica_diagonala_secundara_nenula_varianta2
+# # dim2, mat2 = citeste_matrice_rara_varianta2("C:/An3Fac/sem2/numeric calculus/CN/Tema4/4/a_1.txt")
+# # verifica_diagonala_principala_nenula_varianta2(mat2)
+# # verifica_diagonala_secundara_nenula_varianta2
 
-dim_v, vector = citeste_vector_liber(("C:/An3Fac/sem2/numeric calculus/CN/Tema4/4/b_1.txt"))
-# print("Dimensiunea sistemului:", dim_v)
-# print("Vector:")
-# print(vector[3])
+# dim_v, vector = citeste_vector_liber(("C:/An3Fac/sem2/numeric calculus/CN/Tema4/4/b_1.txt"))
+# # print("Dimensiunea sistemului:", dim_v)
+# # print("Vector:")
+# # print(vector[3])
 
-sol, iteratii = gauss_seidel(matrice, vector)
-# print("Solutie:")
-# print(sol) 
-print(f"solutie Gasita in {iteratii} iteratii")
+# sol, iteratii = gauss_seidel(matrice, vector)
+# # print("Solutie:")
+# # print(sol) 
+# print(f"solutie Gasita in {iteratii} iteratii")
 
-#Norma:
-print("Norma:")
-norma = calculeaza_norma(matrice, sol, vector)
-print(norma)
+# #Norma:
+# print("Norma:")
+# norma = calculeaza_norma(matrice, sol, vector)
+# print(norma)
 
-#Solutie folosind un singur vector
-print("Varianta cu un singur vector:")
-sol_un_vector, it_unv= gauss_seidel_un_vector(matrice, vector)
-# print("Solutie un vector:")
-# print(sol_un_vector) 
-print(f"Gasita in {it_unv} iteratii")
-print("Norma:")
-norma_unvector = norma = calculeaza_norma(matrice, sol_un_vector, vector)
-print(norma_unvector)
+# #Solutie folosind un singur vector
+# print("Varianta cu un singur vector:")
+# sol_un_vector, it_unv= gauss_seidel_un_vector(matrice, vector)
+# # print("Solutie un vector:")
+# # print(sol_un_vector) 
+# print(f"Gasita in {it_unv} iteratii")
+# print("Norma:")
+# norma_unvector = norma = calculeaza_norma(matrice, sol_un_vector, vector)
+# print(norma_unvector)
 
 
-
+# --------------------------------------------------------------------------------------------------------------
 
 # print("Solutia sistemului pe var 2:")
 # dim2, mat2 = citeste_matrice_rara_varianta2("C:/An3Fac/sem2/numeric calculus/CN/Tema4/4/a_1.txt")
