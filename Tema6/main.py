@@ -49,7 +49,7 @@ def polinom_Horner(coefficients, x):
         rezultat = rezultat * x + coef
     return rezultat
 
-ordin = 4
+ordin = 2
 def f(x):
     return x**4 - 12*x**3 + 30*x**2 + 12
 

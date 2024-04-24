@@ -31,7 +31,7 @@ def muller(coefficients, epsilon, k_max):
 
         roots.append(root)
 
-    roots = list(set([round(root, 1) for root in roots]))
+    roots = list(set([round(root, 12) for root in roots]))
     return roots
 
 def muller_method(coefficients, epsilon):
@@ -84,7 +84,7 @@ def muller_method(coefficients, epsilon):
 
 # (x - 1)(x - 2)(x - 3)
 coefficients = [1, -6, 11, -6]
-epsilon = 1e-13
+epsilon = 1e-12
 k_max = 100
 roots = muller(coefficients, epsilon, k_max)
 
