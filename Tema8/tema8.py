@@ -4,9 +4,15 @@ import numpy as np
 def F(x, y):
     return 3*x**2 - 12*x + 2*y**2 + 16*y - 10
 
+# return x**2 + y**2 - 2*x - 4*y - 1
+# return x**2 - 4*x*y + 5*y**2 - 4*y + 3
+# return x**2*y - 2*x*y**2 + 3*x*y + 4
+
+
 def calculate_analytical_gradient(x, y):
-    partial_x = 2 * x - 2
-    partial_y = 2 * y - 2
+    
+    partial_x = 6 * x - 12
+    partial_y = 4 * y + 16
     return np.array([partial_x, partial_y])
 
 def calculate_approximate_gradient(x, y):
@@ -33,8 +39,8 @@ def constant_learning_rate(x, y, gradient):
     return 0.01 
 
 def backtracking_learning_rate(x, y, gradient):
-    beta = 0.8  # Reduction factor of the learning rate
-    eta = 1.0  # Initial learning rate
+    beta = 0.8 
+    eta = 1.0 
     p = 1
     h = 1e-5
     while F(x - eta * gradient[0], y - eta * gradient[1]) > F(x, y) - eta**2 * np.linalg.norm(gradient)**2 and p < 8:
@@ -42,7 +48,7 @@ def backtracking_learning_rate(x, y, gradient):
         p += 1
     return eta
 
-start_point = [5, 5] 
+start_point = [1.5, -3.5] 
 learning_rate_methods = [constant_learning_rate, backtracking_learning_rate]
 gradient_methods = [calculate_analytical_gradient, calculate_approximate_gradient]
 for grad_method in gradient_methods:
